@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"encoding/json"
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -53,16 +54,19 @@ func main() {
 		log.Fatal(err)
 	}
 
-	i, err := updateInfo(client)
-	if err != nil {
-		log.Fatal(err)
-	}
+	for {
+		i, err := updateInfo(client)
+		if err != nil {
+			log.Fatal(err)
+		}
 
-	b, err := json.MarshalIndent(i, "", "    ")
-	if err != nil {
-		log.Fatal(err)
+		b, err := json.MarshalIndent(i, "", "    ")
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(string(b))
+		time.Sleep(time.Second * 60)
 	}
-	fmt.Println(string(b))
 }
 
 func updateInfo(client kubernetes.Interface) (*Info, error) {
