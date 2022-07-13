@@ -32,6 +32,15 @@ func main() {
 	for _, pod := range pods.Items {
 		fmt.Println(pod.Name)
 	}
+
+	nodes, err := client.CoreV1().Nodes().List(context.TODO(), meta_v1.ListOptions{})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, node := range nodes.Items {
+		fmt.Println(node.Name)
+	}
 }
 
 func newClient(contextName string) (kubernetes.Interface, error) {
