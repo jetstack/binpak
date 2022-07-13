@@ -53,6 +53,19 @@ func main() {
 		log.Fatal(err)
 	}
 
+	i, err := updateInfo(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	b, err := json.MarshalIndent(i, "", "    ")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(string(b))
+}
+
+func updateInfo(client kubernetes.Interface) (*Info, error) {
 	// Get a list of nodes from the cluster.
 	nodes, err := client.CoreV1().Nodes().List(context.TODO(), meta_v1.ListOptions{})
 	if err != nil {
@@ -133,13 +146,7 @@ func main() {
 		ClusterName: "test",
 		Instances:   instanceList,
 	}
-
-	b, err := json.MarshalIndent(i, "", "    ")
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	fmt.Println(string(b))
+	return i, nil
 }
 
 func newClient(contextName string) (kubernetes.Interface, error) {
