@@ -64,7 +64,7 @@ func main() {
 	for _, node := range nodes.Items {
 		nodeName := node.Name
 		nodeMemory := node.Status.Capacity["memory"]
-		nodeMemoryMi := nodeMemory.MilliValue()
+		nodeMemoryMi := (nodeMemory.Value() / 1024) / 1024
 		nodeCpu := node.Status.Capacity["cpu"]
 		nodeCpuM := nodeCpu.MilliValue()
 
@@ -93,7 +93,7 @@ func main() {
 		podLimitCpuM := int64(0)
 		for _, container := range pod.Spec.Containers {
 			podContainerRequestMemory := container.Resources.Requests["memory"]
-			podContainerRequestMemoryMi := podContainerRequestMemory.MilliValue()
+			podContainerRequestMemoryMi := (podContainerRequestMemory.Value() / 1024) / 1024
 			podRequestMemoryMi = podRequestMemoryMi + podContainerRequestMemoryMi
 
 			podContainerRequestCpu := container.Resources.Requests["cpu"]
@@ -101,7 +101,7 @@ func main() {
 			podRequestCpuM = podRequestCpuM + podContainerRequestCpuMi
 
 			podContainerLimitsMemory := container.Resources.Requests["memory"]
-			podContainerLimitsMemoryMi := podContainerLimitsMemory.MilliValue()
+			podContainerLimitsMemoryMi := (podContainerLimitsMemory.Value() / 1024) / 1024
 			podLimitMemoryMi = podLimitMemoryMi + podContainerLimitsMemoryMi
 
 			podContainerLimitsCpu := container.Resources.Requests["cpu"]
