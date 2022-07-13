@@ -15,15 +15,15 @@ import (
 
 // Info is all the information displayed by the UI.
 type Info struct {
-	ClusterName string     `json:"clusterName"`
-	Instances   []Instance `json:"instances"`
+	ClusterName string      `json:"clusterName"`
+	Instances   []*Instance `json:"instances"`
 }
 
 // Instance represents a cluster node.
 type Instance struct {
-	Name      string     `json:"name"`
-	Capacity  *Resources `json:"capacity"`
-	Workloads []Workload `json:"workloads"`
+	Name      string      `json:"name"`
+	Capacity  *Resources  `json:"capacity"`
+	Workloads []*Workload `json:"workloads"`
 }
 
 // Resources represents CPU and memory in standardised units.
@@ -53,15 +53,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// pods, err := client.CoreV1().Pods("").List(context.TODO(), meta_v1.ListOptions{})
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// for _, pod := range pods.Items {
-	// 	fmt.Println(pod.Name)
-	// }
-
 	// Get a list of nodes from the cluster.
 	nodes, err := client.CoreV1().Nodes().List(context.TODO(), meta_v1.ListOptions{})
 	if err != nil {
@@ -69,7 +60,7 @@ func main() {
 	}
 
 	// Create a list of instances to represent cluster nodes and the workloads running on them.
-	instanceList := make([]Instance, 0)
+	instanceList := make([]*Instance, 0)
 	for _, node := range nodes.Items {
 		nodeName := node.Name
 		nodeMemory := node.Status.Capacity["memory"]
@@ -83,9 +74,59 @@ func main() {
 				MemoryMi: nodeMemoryMi,
 				CpuM:     nodeCpuM,
 			},
+			Workloads: make([]*Workload, 0),
 		}
 
-		instanceList = append(instanceList, inst)
+		instanceList = append(instanceList, &inst)
+	}
+
+	pods, err := client.CoreV1().Pods("").List(context.TODO(), meta_v1.ListOptions{})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, pod := range pods.Items {
+		podName := pod.Name
+		podRequestMemoryMi := int64(0)
+		podRequestCpuM := int64(0)
+		podLimitMemoryMi := int64(0)
+		podLimitCpuM := int64(0)
+		for _, container := range pod.Spec.Containers {
+			podContainerRequestMemory := container.Resources.Requests["memory"]
+			podContainerRequestMemoryMi := podContainerRequestMemory.MilliValue()
+			podRequestMemoryMi = podRequestMemoryMi + podContainerRequestMemoryMi
+
+			podContainerRequestCpu := container.Resources.Requests["cpu"]
+			podContainerRequestCpuMi := podContainerRequestCpu.MilliValue()
+			podRequestCpuM = podRequestCpuM + podContainerRequestCpuMi
+
+			podContainerLimitsMemory := container.Resources.Requests["memory"]
+			podContainerLimitsMemoryMi := podContainerLimitsMemory.MilliValue()
+			podLimitMemoryMi = podLimitMemoryMi + podContainerLimitsMemoryMi
+
+			podContainerLimitsCpu := container.Resources.Requests["cpu"]
+			podContainerLimitsCpuMi := podContainerLimitsCpu.MilliValue()
+			podLimitCpuM = podLimitCpuM + podContainerLimitsCpuMi
+		}
+
+		w := &Workload{
+			Name: podName,
+			Requests: &Resources{
+				MemoryMi: podRequestMemoryMi,
+				CpuM:     podRequestCpuM,
+			},
+			Limits: &Resources{
+				MemoryMi: podLimitMemoryMi,
+				CpuM:     podLimitCpuM,
+			},
+		}
+
+		for _, inst := range instanceList {
+			if pod.Spec.NodeName == inst.Name {
+				inst.Workloads = append(inst.Workloads, w)
+				break
+			}
+		}
 	}
 
 	i := &Info{
