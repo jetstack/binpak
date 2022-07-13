@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: binpak
+  namespace: binpak
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: binpak
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - binpak.me
+      secretName: binpak-me-tls
+  rules:
+    - host: "binpak.me"
+      http:
+        paths:
+          - path: "/info"
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: binpak-backend
+                port:
+                  number: 80
+          - path: "/"
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: binpak-ui
+                port:
+                  number: 80

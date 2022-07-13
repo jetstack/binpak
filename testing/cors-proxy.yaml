@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: binpak-cors-proxy
+  namespace: binpak
+  labels:
+    app: binpak-cors-proxy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: binpak-cors-proxy
+      labels:
+        app: binpak-cors-proxy
+    spec:
+      priorityClassName: binpak
+      containers:
+        - name: binpak-cors-proxy
+          image: nginx:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: binpak-nginx-config
+              subPath: nginx.conf
+      restartPolicy: Always
+      volumes:
+        - name: binpak-nginx-config
+          configMap:
+            name: binpak-nginx-config
+  selector:
+    matchLabels:
+      app: binpak-cors-proxy
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: binpak-cors-proxy
+  namespace: binpak
+spec:
+  selector:
+    app: binpak-cors-proxy
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: binpak-nginx-config
+  namespace: binpak
+data:
+  nginx.conf: |-
+    events {
+      worker_connections  4096;  ## Default: 1024
+    }
+    http {
+      server {
+          listen 80 default_server;
+          server_name _;
+          server_name_in_redirect off;
+          access_log  /var/log/nginx/access.log;
+          location / {
+              proxy_pass http://binpak.binpak/;
+              add_header Access-Control-Allow-Origin *;
+          }
+      }
+    }
