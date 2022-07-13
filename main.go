@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 
+	"encoding/json"
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
@@ -14,18 +15,23 @@ import (
 )
 
 type info struct {
-	nodes []node
+	instances []instance
 }
 
-type node struct {
+func (i *info) AddItem(item instance) []instance {
+	i.instances = append(i.instances, item)
+	return i.instances
+  }
+
+type instance struct {
 	name string
 	capacity resources 
 	workloads []workload
 }
 
 type resources struct {
-	memoryMi int
-	cpuM int
+	memoryMi int64
+	cpuM int64
 }
 
 type workload struct {
@@ -46,33 +52,55 @@ func main() {
 		log.Fatal(err)
 	}
 
-	pods, err := client.CoreV1().Pods("").List(context.TODO(), meta_v1.ListOptions{})
-	if err != nil {
-		log.Fatal(err)
-	}
+	// pods, err := client.CoreV1().Pods("").List(context.TODO(), meta_v1.ListOptions{})
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	for _, pod := range pods.Items {
-		fmt.Println(pod.Name)
-	}
+	// for _, pod := range pods.Items {
+	// 	fmt.Println(pod.Name)
+	// }
 
 	nodes, err := client.CoreV1().Nodes().List(context.TODO(), meta_v1.ListOptions{})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	i := info{}
+	instanceList := make([]instance, 0)
 
 	for _, node := range nodes.Items {
-		n := node{
-			name: node.Name,
+		nodeName := node.Name
+		nodeMemory := node.Status.Capacity["memory"]
+		nodeMemoryMi := nodeMemory.MilliValue()
+		nodeCpu := node.Status.Capacity["cpu"]
+		nodeCpuM := nodeCpu.MilliValue()
+
+
+		n := instance{
+			name: nodeName,
 			capacity: resources{
-				memoryMi: node.Status.Capacity.Memory,
-				cpuM: node.Status.Capacity.Cpu,
+				memoryMi: nodeMemoryMi,
+				cpuM: nodeCpuM,
 			},
 		}
-		i.nodes = append(i.nodes, n)
-		// fmt.Println(node.Name)
+		fmt.Println(node.Name)
+
+		instanceList = append(instanceList, n)
 	}
+
+	fmt.Println(instanceList)
+
+	i := info{
+		instances: instanceList,
+	}
+
+
+	b, err := json.Marshal(i)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(string(b))	
 
 }
 
@@ -86,14 +114,6 @@ func newClient(contextName string) (kubernetes.Interface, error) {
 	}
 
 	return kubernetes.NewForConfig(config)
-}
-
-func memoryToMemoryMi(memory string) int {
-	
-}
-
-func cpuToCpuM(memory string) int {
-	
 }
 
 // [
