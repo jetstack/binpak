@@ -13,6 +13,28 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
+type info struct {
+	nodes []node
+}
+
+type node struct {
+	name string
+	capacity resources 
+	workloads []workload
+}
+
+type resources struct {
+	memoryMi int
+	cpuM int
+}
+
+type workload struct {
+	id string
+	name string
+	requests resources 
+	limits resources
+}
+
 func main() {
 	contextName := ""
 	if len(os.Args) >= 2 {
@@ -38,9 +60,20 @@ func main() {
 		log.Fatal(err)
 	}
 
+	i := info{}
+
 	for _, node := range nodes.Items {
-		fmt.Println(node.Name)
+		n := node{
+			name: node.Name,
+			capacity: resources{
+				memoryMi: node.Status.Capacity.Memory,
+				cpuM: node.Status.Capacity.Cpu,
+			},
+		}
+		i.nodes = append(i.nodes, n)
+		// fmt.Println(node.Name)
 	}
+
 }
 
 func newClient(contextName string) (kubernetes.Interface, error) {
@@ -54,3 +87,41 @@ func newClient(contextName string) (kubernetes.Interface, error) {
 
 	return kubernetes.NewForConfig(config)
 }
+
+func memoryToMemoryMi(memory string) int {
+	
+}
+
+func cpuToCpuM(memory string) int {
+	
+}
+
+// [
+// 		{
+// 		  id: "nodepool-id",
+// 		  availableResources: {
+// 			memory: 3072,
+// 			cpu: 4000,
+// 		  },
+// 		  nodes: [
+// 			{
+// 			  id: "node-id",
+// 			  workloads: [
+// 				{
+// 				  id: "workload-id",
+// 				  name: "workload-name",
+// 				  allocatedResources: {
+// 					memory: 64,
+// 					cpu: 250,
+// 				  },
+// 				  resourcesLimits: {
+// 					memory: 128,
+// 					cpu: 500,
+// 				  },
+// 				},
+// 			  ],
+// 			},
+// 		  ],
+// 		},
+// 	  ]
+// }
