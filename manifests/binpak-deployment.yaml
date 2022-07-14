@@ -20,5 +20,8 @@ spec:
       containers:
       - image: europe-west1-docker.pkg.dev/jetstack-wil/binpak/binpak:0.0.4
         name: binpak
+        ports:
+        - containerPort: 8080
         resources: {}
+      imagePullPolicy: Always
 status: {}
