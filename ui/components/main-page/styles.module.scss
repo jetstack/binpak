@@ -35,3 +35,16 @@
   grid-gap: 20px;
   flex-wrap: wrap;
 }
+
+.soundIcon {
+  transform: scale(0.8);
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  width: 62px;
+  height: 51px;
+  background: url("/images/sound.svg") no-repeat bottom center;
+  &.soundOn {
+    background: url("/images/sound.svg") no-repeat top center;
+  }
+}
