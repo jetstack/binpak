@@ -1,0 +1,34 @@
+.wrapper {
+  height: 100%;
+  position: relative;
+}
+.container {
+  width: 209px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 1px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 209px;
+  height: 419px;
+  border: 10px solid rgba(#000000, 0.5);
+  background: rgba(#000000, 0.5);
+}
+
+.pixel {
+  width: 20px;
+  height: 20px;
+  background: #424452;
+  z-index: 1;
+  &.hovered {
+    transform: scale(1.6);
+    z-index: 999;
+    opacity: 1 !important;
+  }
+}

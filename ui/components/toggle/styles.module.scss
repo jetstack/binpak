@@ -1,0 +1,44 @@
+.wrapper {
+  text-transform: uppercase;
+  font-size: 18px;
+  display: flex;
+  grid-gap: 20px;
+  align-items: center;
+  cursor: pointer;
+  &.isToggled {
+    .rightItem {
+      color: #f887ff;
+    }
+    .toggle {
+      left: 70%;
+    }
+  }
+  &.isNotToggled {
+    .leftItem {
+      color: #f887ff;
+    }
+    .toggle {
+      left: 0;
+    }
+  }
+}
+
+.rightItem,
+.leftItem {
+  color: #939295;
+}
+.toggleContainer {
+  background: #939295;
+  width: 60px;
+  height: 10px;
+  position: relative;
+  .toggle {
+    position: absolute;
+    top: -8px;
+    background: #f887ff;
+    box-shadow: 4px 4px 0px #000000;
+    width: 24px;
+    height: 24px;
+    transition: all ease-in-out 0.3s;
+  }
+}
