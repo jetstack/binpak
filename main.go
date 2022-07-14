@@ -54,6 +54,9 @@ func main() {
 
 	// Can use this for debugging to just print the info
 	//i, err := updateInfo(client)
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
 	//b, err := json.MarshalIndent(i, "", "    ")
 	//if err != nil {
 	//	log.Fatal(err)
