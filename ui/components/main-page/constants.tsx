@@ -60,11 +60,11 @@ export const mockResponse = {
           id: "",
           name: "kube-proxy-gke-binpak-default-pool-b5aebef7-szqg",
           requests: {
-            memoryMi: 0,
+            memoryMi: 1,
             cpuM: 100,
           },
           limits: {
-            memoryMi: 0,
+            memoryMi: 1,
             cpuM: 100,
           },
         },
@@ -105,12 +105,12 @@ export const mockResponse = {
           id: "",
           name: "event-exporter-gke-5479fd58c8-drrd2",
           requests: {
-            memoryMi: 0,
-            cpuM: 0,
+            memoryMi: 6,
+            cpuM: 6,
           },
           limits: {
-            memoryMi: 0,
-            cpuM: 0,
+            memoryMi: 6,
+            cpuM: 6,
           },
         },
         {
@@ -177,11 +177,11 @@ export const mockResponse = {
           id: "",
           name: "kube-proxy-gke-binpak-default-pool-b5aebef7-t23f",
           requests: {
-            memoryMi: 0,
+            memoryMi: 4,
             cpuM: 100,
           },
           limits: {
-            memoryMi: 0,
+            memoryMi: 4,
             cpuM: 100,
           },
         },
@@ -270,11 +270,11 @@ export const mockResponse = {
           id: "",
           name: "kube-proxy-gke-binpak-default-pool-b5aebef7-vn2f",
           requests: {
-            memoryMi: 0,
+            memoryMi: 10,
             cpuM: 100,
           },
           limits: {
-            memoryMi: 0,
+            memoryMi: 10,
             cpuM: 100,
           },
         },
@@ -282,7 +282,7 @@ export const mockResponse = {
           id: "",
           name: "pdcsi-node-9mg5k",
           requests: {
-            memoryMi: 20,
+            memoryMi: 4000,
             cpuM: 10,
           },
           limits: {

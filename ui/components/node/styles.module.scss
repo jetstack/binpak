@@ -1,9 +1,10 @@
 .wrapper {
   height: 100%;
   position: relative;
+  margin-top: 5px;
 }
 .container {
-  width: 209px;
+  width: 229px;
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -11,12 +12,17 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+
+.title {
+  font-size: 16px;
+}
+
 .border {
   position: absolute;
   top: 0;
   left: 0;
-  width: 209px;
-  height: 419px;
+  width: 229px;
+  height: 439px;
   border: 10px solid rgba(#000000, 0.5);
   background: rgba(#000000, 0.5);
 }
@@ -31,4 +37,17 @@
     z-index: 999;
     opacity: 1 !important;
   }
+}
+.tooltip {
+  font-size: 16px;
+  padding: 0 10px;
+  font-family: Arial;
+  text-shadow: none;
+  text-align: left;
+}
+.tooltipParagraph {
+  padding: 0 10px;
+  font-size: 14px;
+  text-shadow: none;
+  margin: 0;
 }

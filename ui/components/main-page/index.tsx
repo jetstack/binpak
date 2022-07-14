@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Toggle, Node } from "../";
 import styles from "./styles.module.scss";
+import { mockResponse } from "./constants";
 
 export function MainPage() {
   const [isTypeOfResourceToggled, setIsTypeOfResourceToggled] = useState(false);
-  const [isRequested, setIsRequested] = useState(false);
+  const [isAllocated, setIsAllocated] = useState(false);
   const [hoveredWorkload, setHoveredWorkload] = useState(undefined);
+
+  const response = mockResponse;
+  const isCPU = isTypeOfResourceToggled;
 
   return (
     <div className={styles.container}>
@@ -20,6 +24,7 @@ export function MainPage() {
           explain what binpak is.
         </p>
       </div>
+
       <div className={styles.togglesContainer}>
         <Toggle
           leftSideItem="Memory"
@@ -30,48 +35,24 @@ export function MainPage() {
         <div className={styles.divider}></div>
         <Toggle
           leftSideItem="Requested"
-          rightSideItem="Allocated"
-          isToggled={isRequested}
-          onToggle={setIsRequested}
+          rightSideItem="Limits"
+          isToggled={isAllocated}
+          onToggle={setIsAllocated}
         />
       </div>
+      <h3>Cluster name: {response.clusterName}</h3>
       <div className={styles.list}>
-        <Node
-          hoveredWorkload={hoveredWorkload}
-          setHoveredWorkload={setHoveredWorkload}
-        />
-        <Node
-          hoveredWorkload={hoveredWorkload}
-          setHoveredWorkload={setHoveredWorkload}
-        />
-        <Node
-          hoveredWorkload={hoveredWorkload}
-          setHoveredWorkload={setHoveredWorkload}
-        />
-        <Node
-          hoveredWorkload={hoveredWorkload}
-          setHoveredWorkload={setHoveredWorkload}
-        />
-        <Node
-          hoveredWorkload={hoveredWorkload}
-          setHoveredWorkload={setHoveredWorkload}
-        />
-        <Node
-          hoveredWorkload={hoveredWorkload}
-          setHoveredWorkload={setHoveredWorkload}
-        />
-        <Node
-          hoveredWorkload={hoveredWorkload}
-          setHoveredWorkload={setHoveredWorkload}
-        />
-        <Node
-          hoveredWorkload={hoveredWorkload}
-          setHoveredWorkload={setHoveredWorkload}
-        />
-        <Node
-          hoveredWorkload={hoveredWorkload}
-          setHoveredWorkload={setHoveredWorkload}
-        />
+        {response.instances.map((instance: any) => (
+          <Node
+            key={instance.name}
+            workloads={instance.workloads}
+            limit={isCPU ? instance.capacity.cpuM : instance.capacity.memoryMi}
+            isCPU={isCPU}
+            isAllocated={isAllocated}
+            hoveredWorkload={hoveredWorkload}
+            setHoveredWorkload={setHoveredWorkload}
+          />
+        ))}
       </div>
     </div>
   );
