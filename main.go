@@ -2,16 +2,14 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"log"
-	"os"
-	"time"
-
-	"encoding/json"
+	"github.com/gin-gonic/gin"
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 	"k8s.io/client-go/tools/clientcmd"
+	"log"
+	"net/http"
+	"os"
 )
 
 // Info is all the information displayed by the UI.
@@ -54,26 +52,32 @@ func main() {
 		log.Fatal(err)
 	}
 
-	for {
+	// Can use this for debugging to just print the info
+	//i, err := updateInfo(client)
+	//b, err := json.MarshalIndent(i, "", "    ")
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//fmt.Println(string(b))
+	//os.Exit(0)
+
+	router := gin.Default()
+	router.GET("/info", func(c *gin.Context) {
 		i, err := updateInfo(client)
 		if err != nil {
 			log.Fatal(err)
 		}
+		c.IndentedJSON(http.StatusOK, i)
+	})
 
-		b, err := json.MarshalIndent(i, "", "    ")
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Println(string(b))
-		time.Sleep(time.Second * 60)
-	}
+	router.Run("localhost:8080")
 }
 
 func updateInfo(client kubernetes.Interface) (*Info, error) {
 	// Get a list of nodes from the cluster.
 	nodes, err := client.CoreV1().Nodes().List(context.TODO(), meta_v1.ListOptions{})
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
 	// Create a list of instances to represent cluster nodes and the workloads running on them.
@@ -99,7 +103,7 @@ func updateInfo(client kubernetes.Interface) (*Info, error) {
 
 	pods, err := client.CoreV1().Pods("").List(context.TODO(), meta_v1.ListOptions{})
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
 	for _, pod := range pods.Items {
