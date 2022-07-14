@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: binpak
+  name: binpak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: binpak
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: binpak
+    spec:
+      containers:
+      - image: europe-west1-docker.pkg.dev/jetstack-wil/binpak/binpak:0.0.4
+        name: binpak
+        resources: {}
+status: {}
