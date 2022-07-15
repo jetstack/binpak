@@ -1,0 +1,774 @@
+{
+  "clusterName": "binpak-test-cluster",
+  "instances": [
+    {
+      "name": "gke-binpak-default-pool-b5aebef7-588n",
+      "capacity": {
+        "memoryMi": 3931,
+        "cpuM": 2000
+      },
+      "usage": {
+        "memoryMi": 528642048,
+        "cpuM": 0
+      },
+      "workloads": [
+        {
+          "id": "",
+          "name": "fluentbit-gke-lksdp",
+          "requests": {
+            "memoryMi": 200,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 500,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "gke-metrics-agent-jhrng",
+          "requests": {
+            "memoryMi": 50,
+            "cpuM": 3
+          },
+          "limits": {
+            "memoryMi": 50,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "konnectivity-agent-6f96c56d8b-sx6kr",
+          "requests": {
+            "memoryMi": 30,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 125,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "kube-proxy-gke-binpak-default-pool-b5aebef7-588n",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "pdcsi-node-279bk",
+          "requests": {
+            "memoryMi": 20,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 100,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "another-deployment-7d75896b68-ct92g",
+          "requests": {
+            "memoryMi": 200,
+            "cpuM": 500
+          },
+          "limits": {
+            "memoryMi": 512,
+            "cpuM": 800
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "gke-binpak-default-pool-b5aebef7-rzgm",
+      "capacity": {
+        "memoryMi": 3931,
+        "cpuM": 2000
+      },
+      "usage": {
+        "memoryMi": 822386688,
+        "cpuM": 0
+      },
+      "workloads": [
+        {
+          "id": "",
+          "name": "fluentbit-gke-lbdmx",
+          "requests": {
+            "memoryMi": 200,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 500,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "gke-metrics-agent-qpjvp",
+          "requests": {
+            "memoryMi": 50,
+            "cpuM": 3
+          },
+          "limits": {
+            "memoryMi": 50,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "konnectivity-agent-6f96c56d8b-vqv4w",
+          "requests": {
+            "memoryMi": 30,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 125,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "kube-proxy-gke-binpak-default-pool-b5aebef7-rzgm",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "pdcsi-node-sc6bq",
+          "requests": {
+            "memoryMi": 20,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 100,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "deployment2-775c77d84f-5cm44",
+          "requests": {
+            "memoryMi": 128,
+            "cpuM": 600
+          },
+          "limits": {
+            "memoryMi": 256,
+            "cpuM": 900
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "gke-binpak-default-pool-b5aebef7-szqg",
+      "capacity": {
+        "memoryMi": 3931,
+        "cpuM": 2000
+      },
+      "usage": {
+        "memoryMi": 1080160256,
+        "cpuM": 0
+      },
+      "workloads": [
+        {
+          "id": "",
+          "name": "debug-7c957b5dd9-rwn9x",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "cert-manager-66b646d76-zkr42",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "cert-manager-cainjector-9d5979c7d-xcwss",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "cert-manager-webhook-7d8f555998-l6vxn",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "ingress-nginx-admission-patch-kvbpq",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "fluentbit-gke-6mzch",
+          "requests": {
+            "memoryMi": 200,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 500,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "gke-metrics-agent-nwbls",
+          "requests": {
+            "memoryMi": 50,
+            "cpuM": 3
+          },
+          "limits": {
+            "memoryMi": 50,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "konnectivity-agent-6f96c56d8b-hh6dq",
+          "requests": {
+            "memoryMi": 30,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 125,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "kube-dns-56494768b7-h8bgk",
+          "requests": {
+            "memoryMi": 110,
+            "cpuM": 260
+          },
+          "limits": {
+            "memoryMi": 210,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "kube-proxy-gke-binpak-default-pool-b5aebef7-szqg",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "l7-default-backend-69fb9fd9f9-vr5hh",
+          "requests": {
+            "memoryMi": 20,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "pdcsi-node-hd5xd",
+          "requests": {
+            "memoryMi": 20,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 100,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "gke-binpak-default-pool-b5aebef7-t23f",
+      "capacity": {
+        "memoryMi": 3931,
+        "cpuM": 2000
+      },
+      "usage": {
+        "memoryMi": 1086140416,
+        "cpuM": 0
+      },
+      "workloads": [
+        {
+          "id": "",
+          "name": "binpak-backend-686d688bf4-rtsmw",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "binpak-ui-54fcbd74cc-vt86c",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "event-exporter-gke-5479fd58c8-drrd2",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "fluentbit-gke-2mggf",
+          "requests": {
+            "memoryMi": 200,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 500,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "gke-metrics-agent-p5hhz",
+          "requests": {
+            "memoryMi": 50,
+            "cpuM": 3
+          },
+          "limits": {
+            "memoryMi": 50,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "konnectivity-agent-6f96c56d8b-n8pcx",
+          "requests": {
+            "memoryMi": 30,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 125,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "konnectivity-agent-autoscaler-555f599d94-bn6n7",
+          "requests": {
+            "memoryMi": 9,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "kube-dns-autoscaler-f4d55555-b9fqp",
+          "requests": {
+            "memoryMi": 10,
+            "cpuM": 20
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "kube-proxy-gke-binpak-default-pool-b5aebef7-t23f",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "metrics-server-v0.4.5-bbb794dcc-xzlfb",
+          "requests": {
+            "memoryMi": 105,
+            "cpuM": 48
+          },
+          "limits": {
+            "memoryMi": 355,
+            "cpuM": 143
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "pdcsi-node-xqzt6",
+          "requests": {
+            "memoryMi": 20,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 100,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "gke-binpak-default-pool-b5aebef7-vn2f",
+      "capacity": {
+        "memoryMi": 3931,
+        "cpuM": 2000
+      },
+      "usage": {
+        "memoryMi": 980312064,
+        "cpuM": 0
+      },
+      "workloads": [
+        {
+          "id": "",
+          "name": "ingress-nginx-admission-create-bf5z7",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "ingress-nginx-controller-55dcf56b68-zf2l9",
+          "requests": {
+            "memoryMi": 90,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "fluentbit-gke-twjgb",
+          "requests": {
+            "memoryMi": 200,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 500,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "gke-metrics-agent-5lcqk",
+          "requests": {
+            "memoryMi": 50,
+            "cpuM": 3
+          },
+          "limits": {
+            "memoryMi": 50,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "konnectivity-agent-6f96c56d8b-qvr9w",
+          "requests": {
+            "memoryMi": 30,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 125,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "kube-dns-56494768b7-mpf6b",
+          "requests": {
+            "memoryMi": 110,
+            "cpuM": 260
+          },
+          "limits": {
+            "memoryMi": 210,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "kube-proxy-gke-binpak-default-pool-b5aebef7-vn2f",
+          "requests": {
+            "memoryMi": 0,
+            "cpuM": 100
+          },
+          "limits": {
+            "memoryMi": 0,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "pdcsi-node-9mg5k",
+          "requests": {
+            "memoryMi": 20,
+            "cpuM": 10
+          },
+          "limits": {
+            "memoryMi": 100,
+            "cpuM": 0
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        },
+        {
+          "id": "",
+          "name": "deployment1-5c6cddfff5-k9tq5",
+          "requests": {
+            "memoryMi": 64,
+            "cpuM": 250
+          },
+          "limits": {
+            "memoryMi": 128,
+            "cpuM": 500
+          },
+          "usage": {
+            "memoryMi": 0,
+            "cpuM": 0
+          }
+        }
+      ]
+    }
+  ]
+}
