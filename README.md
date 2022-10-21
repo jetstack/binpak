@@ -1,5 +1,7 @@
 # binpak
-A new way of visualising Kubernetes workloads. 
+Binpak is a _very early_ idea for a new way of visualising Kubernetes workloads. It's aim is to be accessible and easy-to-use.
+
+⚠️ The code in this repository is the result of a Jetstack internal hackday, and is untidy / not trivial to use. At this stage, use at your own risk! ⚠️
 
 ## Building
 
