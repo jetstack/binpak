@@ -3,9 +3,10 @@
 set -euo pipefail
 
 # To run: run ./depoy.sh from the root of binpak repo
-BACKEND_IMAGE=europe-west1-docker.pkg.dev/jetstack-wil/binpak/binpak
-UI_IMAGE=europe-west1-docker.pkg.dev/jetstack-wil/binpak/binpak-ui
-COMBINED_IMAGE=europe-west1-docker.pkg.dev/jetstack-wil/binpak/binpak-combined
+GOOGLE_PROJECT=[name-of-your-project]
+BACKEND_IMAGE=europe-west1-docker.pkg.dev/${GOOGLE_PROJECT}/binpak/binpak
+UI_IMAGE=europe-west1-docker.pkg.dev/${GOOGLE_PROJECT}/binpak/binpak-ui
+COMBINED_IMAGE=europe-west1-docker.pkg.dev/${GOOGLE_PROJECT}/binpak/binpak-combined
 
 # TODO: Proper versioning
 VERSION=latest
@@ -22,11 +23,11 @@ docker push ${UI_IMAGE}:${VERSION}
 
 ## Build and push Combined image for mock/demo purposes
 echo "Building ${COMBINED_IMAGE}:${VERSION}"
-docker build -t europe-west1-docker.pkg.dev/jetstack-wil/binpak/binpak-combined:latest -f ui/demo-image.Dockerfile ui/ --platform linux/amd64
+docker build -t europe-west1-docker.pkg.dev/${GOOGLE_PROJECT}/binpak/binpak-combined:latest -f ui/demo-image.Dockerfile ui/ --platform linux/amd64
 docker push ${COMBINED_IMAGE}:${VERSION}
 
 # Set kubernetes context
-#gcloud container clusters get-credentials binpak --zone europe-west2-c --project jetstack-wil
+#gcloud container clusters get-credentials binpak --zone europe-west2-c --project ${GOOGLE_PROJECT}
 #
 ## Deploy to kubernetes
 #BACKEND_IMAGE_TAG=${BACKEND_IMAGE}:${VERSION} envsubst < manifests/deployment-backend.tpl > \

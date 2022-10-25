@@ -17,8 +17,8 @@ spec:
       - dns01:
           cloudDNS:
             # The ID of the GCP project
-            project: jetstack-wil
+            project: [name-of-your-project]
             # This is the secret used to access the service account
             serviceAccountSecretRef:
-              name: cert-manager-dns-sa-key
-              key: key.json
+              name: [name-of-key]
+              key: [name-of-key-file]
